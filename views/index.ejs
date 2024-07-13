@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsBoss</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <div class="header">
+        <h1>NewsBoss</h1>
+        <p>destination for news!</p>
+        <form action="/headlines" method="post">
+            <select name="country" id="drop-down">
+                <option value="" data-display="select">Country</option>
+                <option value="in">India</option>
+                <option value="us">United States</option>
+                <option value="cn">China</option>
+            </select>
+            <button type="submit" class="form-submit">Go</button>
+        </form>
+    </div>
+    
+    <% if (locals.news) {%>
+        <p class="tot"> There are <%= news.totalResults %> healines!</p>
+        <ul>
+            <% news.articles.forEach(article => { %>
+                <div class="news">
+                    <div class="title">
+                        <h2><%= article.title %></h2>
+                    </div>
+                    <div class="content">
+                        <p><%= article.description %>
+                            <a href="<%= article.url %>">Read more</a>
+                        </p>
+                    </div>
+                </div>
+            <% }) %>
+    <% } %>
+</body>
+</html>
