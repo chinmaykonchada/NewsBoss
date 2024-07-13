@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NewsBoss</title>
     <link rel="stylesheet" href="./styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
+        <p class="date"></p>
         <h1>NewsBoss</h1>
-        <p>destination for news!</p>
         <form action="/headlines" method="post">
             <select name="country" id="drop-down">
-                <option value="" data-display="select">Country</option>
+                <option value="" data-display="select">Select Country</option>
                 <option value="in">India</option>
                 <option value="us">United States</option>
                 <option value="cn">China</option>
@@ -22,7 +25,9 @@
     </div>
     
     <% if (locals.news) {%>
-        <p class="tot"> There are <%= news.totalResults %> healines!</p>
+        <div class="container">
+            <p class="total"> There are <%= news.totalResults %> healines!</p>
+        </div>
         <ul>
             <% news.articles.forEach(article => { %>
                 <div class="news">
@@ -35,7 +40,18 @@
                         </p>
                     </div>
                 </div>
-            <% }) %>
+                <% }) %>
+    <% } else{%>
+            <p class="credibility">Destination for news!</p>
     <% } %>
+    <script>
+        const date = new Date();
+        const day = date.getDate();
+        const month = date.getMonth();
+        const year = date.getFullYear();
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        document.querySelector('.date').textContent = `${day}, ${days[date.getDay()]}, ${months[month]}, ${year}`;        
+    </script>
 </body>
 </html>
