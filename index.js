@@ -6,6 +6,7 @@ const app = express();
 const port = 3000;
 const API_URL="https://newsapi.org/v2/top-headlines";
 const API_KEY="7327c9005d9d4cad817984caf24e7260";
+// api key for https://newsapi.org/ is-7327c9005d9d4cad817984caf24e7260
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
